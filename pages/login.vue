@@ -1,10 +1,14 @@
 <template>
-	<div style="width: 200px; margin:auto; text-align:center;">
+	<div class="loginForm">
 		<h1>Login</h1>
 		<v-form
-			rel="login"
+			ref="loginForm"
 			v-model="valid"
+			lazy-validation
 		>
+			<div v-if="loginFailed" class="warningBanner">
+				Имя пользователя или пароль введены неверно!	
+			</div>
 			<v-text-field
 				v-model="username"
 				label="Имя пользователя"
@@ -31,7 +35,7 @@
 
 <script>
 	async function pseudoLogin(username, password) {
-		await new Promise(resolve => setTimeout(resolve, 2000));
+		await new Promise(resolve => setTimeout(resolve, 1000)); // симулируем запрос в БД
 		if (username == 'Admin' && password == '12345')
 			return true;
 		else
@@ -44,15 +48,20 @@
 			password: '',
 			showPassword: false,
 			loading: false,
+			loginFailed: false,
 		}),
 		methods: {
 			async login() {
+				this.$refs.loginForm.validate();
 				this.loading = true;
 				if (await pseudoLogin(this.username, this.password))
+				{
 					console.log(this);
+					this.loginFailed = false;
 //					redirect('/profile'); // TODO
+				}
 				else
-					console.log('noooo');
+					this.loginFailed = true;
 				this.loading = false;
 			}
 		},

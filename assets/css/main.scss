@@ -1,0 +1,15 @@
+.loginForm {
+	width: 200px;
+	margin: auto;
+	text-align: center;
+}
+
+$warningColor: red;
+
+.warningBanner {
+	padding: 5px;
+	color: $warningColor;
+	font-size: 14px;
+	border: 1px solid $warningColor;
+	border-radius: 5px;
+}
