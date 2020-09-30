@@ -5,5 +5,5 @@ export default async function ({ app: { $cookies }, store, route, redirect }) {
 	if (!$cookies.get('authenticated'))
 		return redirect('/login', { prevPage: route.fullPath });
 
-	await store.commit('login', { $cookies });
+	await store.commit('LOG_IN', { $cookies });
 }

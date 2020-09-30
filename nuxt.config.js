@@ -8,6 +8,7 @@ export default {
 		'@nuxtjs/vuetify',
 	],
 	modules: [
+		'@nuxtjs/axios',
 		'cookie-universal-nuxt',
 	],
 	css: [

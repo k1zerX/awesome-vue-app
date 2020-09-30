@@ -20,7 +20,7 @@
 
 				const { $store, $cookies, $router, $route } = this;
 
-				await $store.commit('logout', { $cookies });
+				await $store.commit('LOG_OUT', { $cookies });
 				if ($route.fullPath == '/profile')
 					$router.push('/login');
 

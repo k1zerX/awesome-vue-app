@@ -62,7 +62,7 @@
 				await new Promise(resolve => setTimeout(resolve, 1000)); // simulating request to DB
 				if (username == 'Admin' && password == '12345')
 				{
-					await $store.commit('login', { $cookies });
+					await $store.commit('LOG_IN', { $cookies });
 					$router.push(prevPage);
 				}
 				else
