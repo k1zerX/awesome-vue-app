@@ -1,11 +1,18 @@
 <template>
 	<v-app>
-		<v-navigation-drawer v-model="showDrawer" app>
+		<v-navigation-drawer
+			v-model="showDrawer"
+			app
+		>
 			<nav-drawer-content />
 		</v-navigation-drawer>
 
 		<v-app-bar app>
-			<v-app-bar-nav-icon @click="showDrawer = !showDrawer"/>
+			<v-app-bar-nav-icon
+				@click="showDrawer = !showDrawer"
+			/>
+			<v-spacer />
+			<exit-btn />
 		</v-app-bar>
 
 		<v-main>

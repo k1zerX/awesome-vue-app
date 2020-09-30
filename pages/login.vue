@@ -1,6 +1,6 @@
 <template>
 	<div class="loginForm">
-		<h1>Login auth: {{$store.state.authenticated}}</h1>
+		<h1>Вход</h1>
 		<v-form
 			ref="loginForm"
 			v-model="valid"
@@ -35,12 +35,6 @@
 </template>
 
 <script>
-	async function pseudoLogin(username, password) {
-		await new Promise(resolve => setTimeout(resolve, 1000)); // simulating request to DB
-		await $store.commit('login');
-		return username == 'Admin' && password == '12345';
-	}
-
 	export default {
 		data: () => ({
 			valid: false,
@@ -55,20 +49,25 @@
 		}),
 		methods: {
 			async login() {
-				const { username, password, $refs, $store, $router, valid } = this;
+				this.loading = true;
+				this.loginFailed = false;
+
+				const { username, password, valid, $refs, $store, $cookies, $router, $route: { query } } = this;
+				const prevPage = query.prevPage || '/';
+
 				$refs.loginForm.validate();
 				if (!valid)
 					return;
-				this.loading = true;
-				console.log('help meeee');
-				if (await pseudoLogin(username, password))
+
+				await new Promise(resolve => setTimeout(resolve, 1000)); // simulating request to DB
+				if (username == 'Admin' && password == '12345')
 				{
-					this.loginFailed = false;
-					$router.go(-1) // TODO may be this.$router
+					await $store.commit('login', { $cookies });
+					$router.push(prevPage);
 				}
 				else
 					this.loginFailed = true;
-				console.log('2 help meeee');
+
 				this.loading = false;
 			}
 		},

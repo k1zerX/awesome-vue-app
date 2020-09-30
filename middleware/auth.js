@@ -1,7 +1,9 @@
-export default function ({ app, store, redirect }) {
-	app.$cookies.set('authenticated', state.authenticated, {
-		path: '/',
-	});
-	if (!store.state.authenticated)
-		return redirect('/login');
+export default async function ({ app: { $cookies }, store, route, redirect }) {
+	if (store.state.authenticated)
+		return;
+
+	if (!$cookies.get('authenticated'))
+		return redirect('/login', { prevPage: route.fullPath });
+
+	await store.commit('login', { $cookies });
 }

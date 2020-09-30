@@ -3,10 +3,16 @@ export const state = () => ({
 })
 
 export const mutations = {
-	async login(state) {
+	login(state, { $cookies }) {
 		state.authenticated = true;
+		$cookies.set('authenticated', state.authenticated, {
+			path: '/',
+		});
 	},
-	async logout(state) { // TODO may be async, check if $cookies.set() is async
+	logout(state, { $cookies }) {
 		state.authenticated = false;
+		$cookies.set('authenticated', state.authenticated, {
+			path: '/',
+		});
 	}
 }
