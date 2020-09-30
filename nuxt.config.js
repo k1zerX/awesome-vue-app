@@ -1,13 +1,16 @@
 export default {
 	server: {
-		port: process.env.PORT || 3000,
-		host: process.env.HOST || 'localhost',
+		port: process.env.PORT || 3000, // heroku specifies the port using PORT
+		host: '0.0.0.0',
 	},
 	components: true,
 	buildModules: [
-		'@nuxtjs/vuetify'
+		'@nuxtjs/vuetify',
+	],
+	modules: [
+		'cookie-universal-nuxt',
 	],
 	css: [
-		'@/assets/css/main.scss'
+		'@/assets/css/main.scss',
 	],
 }

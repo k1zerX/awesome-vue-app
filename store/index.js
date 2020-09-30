@@ -3,8 +3,10 @@ export const state = () => ({
 })
 
 export const mutations = {
-	authorize(state, username, password) {
-		if (username == 'Admin' && password == '12345')
-			state.authenticated = true;
+	async login(state) {
+		state.authenticated = true;
+	},
+	async logout(state) { // TODO may be async, check if $cookies.set() is async
+		state.authenticated = false;
 	}
 }

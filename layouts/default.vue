@@ -1,8 +1,12 @@
 <template>
 	<v-app>
-		<nav-drawer />
+		<v-navigation-drawer v-model="showDrawer" app>
+			<nav-drawer-content />
+		</v-navigation-drawer>
 
-		<tool-bar />
+		<v-app-bar app>
+			<v-app-bar-nav-icon @click="showDrawer = !showDrawer"/>
+		</v-app-bar>
 
 		<v-main>
 			<v-container fluid>
@@ -13,3 +17,11 @@
 		<v-footer app></v-footer>
 	</v-app>
 </template>
+
+<script>
+	export default {
+		data: () => ({
+			showDrawer: false,
+		}),
+	}
+</script>
