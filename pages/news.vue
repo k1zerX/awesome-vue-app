@@ -28,7 +28,6 @@
 		}),
 		async asyncData({ app: { $axios }, store }) {
 			await store.dispatch('news/UPDATE_ARTICLES', { $axios });
-			console.log(store.state.news.articles);
 			return {
 				articles: store.state.news.articles,
 			};
