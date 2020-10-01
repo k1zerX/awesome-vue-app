@@ -1,25 +1,17 @@
 <template>
-	<div>
-		<v-layout
+	<v-container fill-height class="d-flex flex-wrap justify-center">
+		<v-progress-circular
 			v-if="loading"
-			justify-center
-		>
-			<v-progress-circular
-				indeterminate
-				size="100"
-			/>
-		</v-layout>
-		<div
+			indeterminate
+			size="100"
+		/>
+		<news-article
 			v-else
-			class="d-flex flex-wrap justify-center"
-		>
-			<news-article
-				v-for="(article, index) in articles"
-				:key="`article-${index}`"
-				:article="article"
-			/>
-		</div>
-	</div>
+			v-for="(article, index) in articles"
+			:key="`article-${index}`"
+			:article="article"
+		/>
+	</v-container>
 </template>
 
 <script>
