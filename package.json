@@ -15,5 +15,6 @@
 		"@nuxtjs/vuetify": "^1.11.2",
 		"node-sass": "^4.14.1",
 		"sass-loader": "^10.0.2"
-	}
+	},
+	"version": "0.0.0"
 }
