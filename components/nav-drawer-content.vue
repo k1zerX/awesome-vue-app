@@ -2,7 +2,19 @@
 	<v-list
 		nav
 	>
-	<div style="width: 150px; height: 150px; margin: auto; background: red">Here should be some kitty</div>
+		<v-layout
+			justify-center
+		>
+			<v-avatar
+				size="150"
+			>
+				<v-icon
+					size="150"
+				>
+					mdi-account-circle
+				</v-icon>
+			</v-avatar>
+		</v-layout>
 	<v-divider style="margin-top:10px;margin-bottom:10px" />
 		<v-list-item
 			v-for="item in items"

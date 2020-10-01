@@ -1,30 +1,20 @@
 <template>
-	<v-list>
-		<v-list-item>
-			source: {{article.source.id}} | {{article.source.name}}
-		</v-list-item>
-		<v-list-item>
-			author: {{article.author}}
-		</v-list-item>
-		<v-list-item>
-			title: {{article.title}}
-		</v-list-item>
-		<v-list-item>
-			description: {{article.description}}
-		</v-list-item>
-		<v-list-item>
-			url: {{article.url}}
-		</v-list-item>
-		<v-list-item>
-			urlToImage: {{article.urlToImage}}
-		</v-list-item>
-		<v-list-item>
-			publishedAt: {{article.publishedAt}}
-		</v-list-item>
-		<v-list-item>
-			content: {{article.content}}
-		</v-list-item>
-	</v-list>
+	<v-card
+		class="pa-2"
+		tile
+		style="margin: 10px; width: 300px;"
+	>
+		<v-img
+			:src="article.urlToImage"
+			max-width="100%"
+		/>
+		<v-card-title>
+			{{article.title}}
+		</v-card-title>
+		<v-card-subtitle>
+			{{article.description}}
+		</v-card-subtitle>
+	</v-card>
 </template>
 
 <script>

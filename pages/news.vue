@@ -1,36 +1,40 @@
 <template>
-	<v-list>
-		<h1>News Page</h1>
-		<v-list-item
-			v-for="(article, index) in articles"
-			:key="`article-${index}`"
+	<div>
+		<v-layout
+			v-if="loading"
+			justify-center
 		>
-			<news-article :article="article" />
-		</v-list-item>
-	</v-list>
+			<v-progress-circular
+				indeterminate
+				size="100"
+			/>
+		</v-layout>
+		<div
+			v-else
+			class="d-flex flex-wrap justify-center"
+		>
+			<news-article
+				v-for="(article, index) in articles"
+				:key="`article-${index}`"
+				:article="article"
+			/>
+		</div>
+	</div>
 </template>
 
 <script>
 	export default {
 		data: () => ({
-			articles: [
-				{
-					source: { id: 'id', name: 'Name'},
-					author: 'Author',
-					title: 'Title',
-					description: 'Description',
-					url: 'url',
-					urlToImage: 'urlToImage',
-					publishedAt: '2020-09-30T15:14:00Z',
-					content: 'content',
-				}
-			],
+			articles: undefined,
+			loading: true,
 		}),
-		async asyncData({ app: { $axios }, store }) {
-			await store.dispatch('news/UPDATE_ARTICLES', { $axios });
-			return {
-				articles: store.state.news.articles,
-			};
+		async fetch() {
+			const { $store, $axios } = this;
+
+			await $store.dispatch('news/UPDATE_ARTICLES', { $axios });
+			
+			this.articles = $store.state.news.articles;
+			this.loading = false;
 		},
 	}
 </script>
